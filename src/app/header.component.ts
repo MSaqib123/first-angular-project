@@ -2,7 +2,7 @@ import {Component} from '@angular/core'
 
 // decorator
 @Component({
-  selector: 'app-root', 
+  selector: 'app-header', 
   //======= inline element =========
 //templateUrl: '<h1>Hello Words </h2>',
   templateUrl: './header.component.html',
