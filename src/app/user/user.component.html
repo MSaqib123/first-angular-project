@@ -2,17 +2,10 @@
     <!-- ======= Event Binding ========= -->
     <button (click)="ChangeUser()">
         <!--_______ 2. Properity Bindding ______-->
-        <img [src]="ImagePath" [alt]="selectedUser.name" width="100">
+        <img [src]="imagepath()" [alt]="selectedUser().name" width="100">
 
         <!--_______ 1. string interpolation (one-way data binding technique) ______-->
-        <span>{{selectedUser.name}}</span>
+        <span>{{selectedUser().name}}</span>
     </button>
 
-
-
-    <br>
-    <br>
-    <h1>Behind the Seend zone.js is hero</h1>
-    <button (click)="changeName()">Change Name</button>
-    <p>{{ name }}</p>
 </div>

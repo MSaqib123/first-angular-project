@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import {DUMMY_USERS} from '../dummy-users';
+import { signal } from '@angular/core';
 
 
 
@@ -15,52 +16,64 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 })
 
 export class UserComponent {
-  selectedUser = DUMMY_USERS[randomIndex];//[0];
+  // selectedUser = DUMMY_USERS[randomIndex];//[0];
 
-  get ImagePath(){
-    return "assets/users/" + this.selectedUser.avatar;
-  };
+  // get ImagePath(){
+  //   return "assets/users/" + this.selectedUser.avatar;
+  // };
 
   //======= Event Binding =========
-  ChangeUser(){
-    //========== 1. rendom console change =======
-    // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    // console.log("ok",randomIndex)
+  // ChangeUser(){
+  //   //========== 1. rendom console change =======
+  //   // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+  //   // console.log("ok",randomIndex)
 
-    //========== 2. State change ========
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser = DUMMY_USERS[randomIndex]
-  }
+  //   //========== 2. State change ========
+  //   const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+  //   this.selectedUser = DUMMY_USERS[randomIndex]
+  // }
 
-   // NOTE
+    //  name = "SAQIB"
+    //   changeName() {
+    //     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    //     this.name = 'Ahamd Ali : ' + randomIndex;
+    //   }
+
     //================== zone.js ===================
     /*
+      NOTE
       1. What is zone.js? 
       zone.js is a library that Angular uses to detect and track asynchronous operations like:
-
       setTimeout
       Promise
       addEventListener
       XHR / fetch calls
-
-      NOTE
       Angular uses zone.js to automatically trigger change detection and update the UI.
 
       Example:
       When click is called the   zone.js tell to  anguler this is click event and do some changing 
 
       NOTE
-      1. Does zone.js Update the UI Itself? ❌
+          Does zone.js Update the UI Itself? ❌
           No!
           zone.js never updates the UI directly.
           Its only job is to notify Angular whenever an asynchronous task or event happens.
-
           After that, Angular itself runs change detection and updates the UI.
+
+      NOTE
+      2.  Signals 
+      same as  zone.js  but its performance is batter then   zone.js
       */
-     
-      name = "SAQIB"
-      changeName() {
-        const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-        this.name = 'Ahamd Ali : ' + randomIndex;
-      }
+
+
+      selectedUser = signal(DUMMY_USERS[randomIndex]);
+      imagepath = computed(()=>"assets/users/" + this.selectedUser().avatar);
+      // get ImagePath(){
+      //   return "assets/users/" + this.selectedUser.avatar;
+      // };
+     ChangeUser(){
+      const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+      this.selectedUser.set(DUMMY_USERS[randomIndex]);
+    }
+   
 }
