@@ -35,7 +35,7 @@ export class UserComponent {
    // NOTE
     //================== zone.js ===================
     /*
-      1. What is zone.jss? 
+      1. What is zone.js? 
       zone.js is a library that Angular uses to detect and track asynchronous operations like:
 
       setTimeout
