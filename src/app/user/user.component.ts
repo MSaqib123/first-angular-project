@@ -19,5 +19,19 @@ export class UserComponent {
 
   get ImagePath(){
     return "assets/users/" + this.selectedUser.avatar;
+  };
+
+  //======= Event Binding =========
+  ChangeUser(){
+    //========== 1. rendom console change =======
+    // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    // console.log("ok",randomIndex)
+
+    //========== 2. State change ========
+    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    this.selectedUser = DUMMY_USERS[randomIndex]
+
+
+    
   }
 }
