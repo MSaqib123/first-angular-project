@@ -1,8 +1,9 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, EventEmitter } from '@angular/core';
 import {DUMMY_USERS} from '../dummy-users';
 import { signal } from '@angular/core';
 //====== Decorator Base paramters =======
 import { Input } from '@angular/core';
+import { Output } from '@angular/core';
 
 //====== Signle Base paramters =======
 import { input } from '@angular/core';
@@ -21,12 +22,18 @@ export class UserComponent {
   // ===================================
 
   // Exclamation mark
-  // @Input({required:true}) avatar! : string;
-  // @Input({required:true}) name! : string;
+  @Input({required:true}) avatar! : string;
+  @Input({required:true}) name! : string;
+  @Input({required:true}) Id! : string;
+  @Output() select = new EventEmitter();
 
-  // get ImagePath(){
-  //   return "assets/users/" + this.avatar;
-  // };
+  get ImagePath(){
+    return "assets/users/" + this.avatar;
+  };
+
+    ChangeUser(){
+      this.select.emit(this.Id);
+    }
 
 
   // ===================================
@@ -37,14 +44,13 @@ export class UserComponent {
   //name = input<string>();
 
   //2. Required 
-  avatar = input.required<string>();
-  name = input.required<string>();
+  // avatar = input.required<string>();
+  // name = input.required<string>();
 
-  imagePath = computed(()=>{
-    console.log("assets/users/" + this.avatar())
-    return "assets/users/" + this.avatar();
-  })
+  // imagePath = computed(()=>{
+  //   console.log("assets/users/" + this.avatar())
+  //   return "assets/users/" + this.avatar();
+  // })
 
-  ChangeUser(){}
-   
+  // ChangeUser(){}
 }
