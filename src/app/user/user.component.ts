@@ -42,10 +42,9 @@ export class UserComponent {
     return "assets/users/" + this.avatar;
   };
 
-    ChangeUser(){
-      this.select.emit(this.Id);
-    }
-
+  ChangeUser(){
+    this.select.emit(this.Id);
+  }
 
   // ===================================
   // NOTE 2 signla Base parameters
