@@ -33,9 +33,15 @@ export class UserComponent {
   // @Output() select = new EventEmitter();
   
   // NOTE  out function of angular
-  // its strongly type bindined function   means  it accept genericDatatype <String>
+  // its strongly type data_binded function   means  it accept genericDatatype <String>
+  // select = output<String>();
 
-  select = output<String>();
+  
+  // NOTE out decorated method of angular
+  // this is not   strong    binded  Decoretor   but  we can also used   genericDatatype <String>   
+  // for Avoiding the DataType issues
+   @Output() select = new EventEmitter<String>();
+  
   
 
   get ImagePath(){
