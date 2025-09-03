@@ -19,19 +19,23 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 export class UserComponent {
   // =================
   // NOTE
-  /* passing Values  from Parent (app) to chil(user) compoennts  ||  like passing parameter to function kinds*/
+  // Setting  Validation on Input  that the In Parmteer is
+  // 1. Requireds
+  // 2. optional 
   // =================
   // param 1
-  @Input() avator! : string;
-  // param 1
-  @Input() name! : string;
+  @Input({required:true}) avator! : string;
+  // param 2
+  @Input({required:true}) name! : string;
 
    selectedUser = DUMMY_USERS[randomIndex];//[0];
+
+    //exclamation mark
 
     get ImagePath(){
       return "assets/users/" + this.avator;
     };
-    
+
     ChangeUser(){}
    
 }
