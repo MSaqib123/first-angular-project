@@ -7,6 +7,8 @@ import { Output } from '@angular/core';
 
 //====== Signle Base paramters =======
 import { input } from '@angular/core';
+import { output } from '@angular/core';
+
 
 
 @Component({
@@ -24,8 +26,17 @@ export class UserComponent {
   // Exclamation mark
   @Input({required:true}) avatar! : string;
   @Input({required:true}) name! : string;
+
   @Input({required:true}) Id! : string;
-  @Output() select = new EventEmitter();
+  
+  // NOTE out decorated method of angular
+  // @Output() select = new EventEmitter();
+  
+  // NOTE  out function of angular
+  // its strongly type bindined function   means  it accept genericDatatype <String>
+
+  select = output<String>();
+  
 
   get ImagePath(){
     return "assets/users/" + this.avatar;
