@@ -1,12 +1,11 @@
 import { Component, computed } from '@angular/core';
 import {DUMMY_USERS} from '../dummy-users';
 import { signal } from '@angular/core';
+//====== Decorator Base paramters =======
 import { Input } from '@angular/core';
 
-
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-
+//====== Signle Base paramters =======
+import { input } from '@angular/core';
 
 
 @Component({
@@ -17,25 +16,35 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 })
 
 export class UserComponent {
-  // =================
-  // NOTE
-  // Setting  Validation on Input  that the In Parmteer is
-  // 1. Requireds
-  // 2. optional 
-  // =================
-  // param 1
-  @Input({required:true}) avator! : string;
-  // param 2
-  @Input({required:true}) name! : string;
+  // ===================================
+  // NOTE 1 Decorator Base Approche to take paramters
+  // ===================================
 
-   selectedUser = DUMMY_USERS[randomIndex];//[0];
+  // Exclamation mark
+  // @Input({required:true}) avatar! : string;
+  // @Input({required:true}) name! : string;
 
-    //exclamation mark
+  // get ImagePath(){
+  //   return "assets/users/" + this.avatar;
+  // };
 
-    get ImagePath(){
-      return "assets/users/" + this.avator;
-    };
 
-    ChangeUser(){}
+  // ===================================
+  // NOTE 2 signla Base parameters
+  // ===================================
+  //1. optinal
+  //avatar = input<string>();
+  //name = input<string>();
+
+  //2. Required 
+  avatar = input.required<string>();
+  name = input.required<string>();
+
+  imagePath = computed(()=>{
+    console.log("assets/users/" + this.avatar())
+    return "assets/users/" + this.avatar();
+  })
+
+  ChangeUser(){}
    
 }
