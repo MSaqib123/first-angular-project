@@ -21,6 +21,9 @@ export class AppComponent {
     this.selectedUserId = Id;
   }
 
+
+  
+
   // onSelectUserGetName(name:String){
   //   this.userName = name;
   // }
