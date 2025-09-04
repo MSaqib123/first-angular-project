@@ -41,7 +41,7 @@ export class UserComponent {
   // this is not   strong    binded  Decoretor   but  we can also used   genericDatatype <String>   
   // for Avoiding the DataType issues
    @Output() select = new EventEmitter<String>();
-   @Output() selectName = new EventEmitter<String>();
+
   
   
 
@@ -51,7 +51,6 @@ export class UserComponent {
 
   ChangeUser(){
     this.select.emit(this.Id);
-    this.selectName.emit(this.name);
   }
 
   // ===================================

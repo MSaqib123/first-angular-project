@@ -14,16 +14,19 @@ import { TaskComponent } from "./task/task.component";
 export class AppComponent {
   title = 'Analyzing-The-Project-Structure';
   users = DUMMY_USERS;
-
-  userName:String = "This is selected UserName"
+  selectedUserId:String = "u1";
 
 
   onSelectUser(Id:String){
-    console.log("Selected user with Id : ",Id);
+    this.selectedUserId = Id;
   }
 
-  onSelectUserGetName(name:String){
-    this.userName = name;
+  // onSelectUserGetName(name:String){
+  //   this.userName = name;
+  // }
+  get onSelectUserObj(){
+    return this.users.find(x=>x.id==this.selectedUserId)!;
   }
+
 
 }
