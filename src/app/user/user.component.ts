@@ -10,6 +10,9 @@ import { Output } from '@angular/core';
 import { input } from '@angular/core';
 import { output } from '@angular/core';
 
+//====== Customer Model =========
+import { User } from './User.model';
+
 
 // ===================================
 // NOTE Advane Type_Script Type Illisass Way
@@ -24,11 +27,11 @@ import { output } from '@angular/core';
 // ===================================
 // NOTE Advane Type_Script Type Illisass Way
 // ===================================
-interface User{
-    id:string,
-    avatar:string,
-    name:string;  
-}
+// interface User{
+//     id:string,
+//     avatar:string,
+//     name:string;  
+// }
 
 
 @Component({
