@@ -20,19 +20,9 @@
     <li>
       <app-user [Id]="users[3].id" [avatar]="users[3].avatar" [name]="users[3].name" (select) = "onSelectUser($event)" />
     </li>
-
-    <!--=================== Error becuase i set the Requried = true =======================-->
-    <!-- <li>
-      <app-user [avator]="users[2].avatar" />
-    </li>
-    <li>
-      <app-user [name]="users[3].name"/>
-    </li> -->
   </ul>
-
   <app-task [NameOfUser]="onSelectUserObj.name"/>
 </main>
-
 
 <h1>
   Adding New  User component to the ui

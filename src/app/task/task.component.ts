@@ -7,5 +7,14 @@ import { Component,Input } from '@angular/core';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
-  @Input({required:true}) NameOfUser! :String; 
+  //================== Type script ===================
+  company:String = "";
+  select:String = "";
+  
+  
+  //================== Nullesh ===================
+  // @Input({required:true}) NameOfUser! :String; 
+  // @Input() NameOfUser? :String; 
+  // @Input() NameOfUser : String | undefined; 
+  @Input() NameOfUser? : String; 
 }

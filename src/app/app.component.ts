@@ -15,18 +15,10 @@ export class AppComponent {
   title = 'Analyzing-The-Project-Structure';
   users = DUMMY_USERS;
   selectedUserId:String = "u1";
-
-
+  
   onSelectUser(Id:String){
     this.selectedUserId = Id;
   }
-
-
-  
-
-  // onSelectUserGetName(name:String){
-  //   this.userName = name;
-  // }
   get onSelectUserObj(){
     return this.users.find(x=>x.id==this.selectedUserId)!;
   }
