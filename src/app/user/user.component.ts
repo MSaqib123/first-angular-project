@@ -59,7 +59,9 @@ export class UserComponent {
   //   name:string;
   // }
   @Input({required:true}) user!:User;
+  @Input({required:true}) selected!:boolean;
   @Output() select = new EventEmitter<string>();
+  
 
   get ImagePath(){
     return "assets/users/" + this.user.avatar;
