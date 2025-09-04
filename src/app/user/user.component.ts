@@ -57,7 +57,6 @@ export class UserComponent {
   @Input({required:true}) user!:User;
   @Output() select = new EventEmitter<string>();
 
-
   get ImagePath(){
     return "assets/users/" + this.user.avatar;
   };
@@ -69,5 +68,7 @@ export class UserComponent {
   // ===================================
   // NOTE 2 signla Base parameters
   // ===================================
+
+  
 
 }

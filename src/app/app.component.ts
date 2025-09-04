@@ -12,17 +12,17 @@ import { TaskComponent } from "./task/task.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Analyzing-The-Project-Structure';
   users = DUMMY_USERS;
-  selectedUserId:string = "u1";
+  selectedUserId!:string;
+
   
-  onSelectUser(id:string){
-    this.selectedUserId = id;
-    console.log(id)
+  get onSelectUserObj(){
+    return this.users.find((user)=>user.id===this.selectedUserId)!;
   }
 
-  get onSelectUserObj(){
-    return this.users.find(x=>x.id==this.selectedUserId)!;
+
+  onSelectUser(id:string){
+    this.selectedUserId = id;
   }
 
   
