@@ -20,23 +20,27 @@ import { output } from '@angular/core';
 
 export class UserComponent {
   // ===================================
-  // NOTE 1 Decorator Base Approche to take paramters
+  // NOTE  Advance Type_Script  lang concept
   // ===================================
+  // @Input({required:true}) avatar! : string;
+  // @Input({required:true}) name! : string;
+  // @Input({required:true}) id! : string;
+  @Input({required:true}) user!:{
+    id:string,
+    avatar:string,
+    name:string;
+  }
 
-  // Exclamation mark
-  @Input({required:true}) avatar! : string;
-  @Input({required:true}) name! : string;
 
-  @Input({required:true}) Id! : string;
-  @Output() select = new EventEmitter<String>();
+  @Output() select = new EventEmitter<string>();
 
 
   get ImagePath(){
-    return "assets/users/" + this.avatar;
+    return "assets/users/" + this.user.avatar;
   };
 
   ChangeUser(){
-    this.select.emit(this.Id);
+    this.select.emit(this.user.id);
   }
 
   // ===================================

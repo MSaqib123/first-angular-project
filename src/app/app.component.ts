@@ -14,14 +14,16 @@ import { TaskComponent } from "./task/task.component";
 export class AppComponent {
   title = 'Analyzing-The-Project-Structure';
   users = DUMMY_USERS;
-  selectedUserId:String = "u1";
+  selectedUserId:string = "u1";
   
-  onSelectUser(Id:String){
-    this.selectedUserId = Id;
+  onSelectUser(id:string){
+    this.selectedUserId = id;
+    console.log(id)
   }
+
   get onSelectUserObj(){
     return this.users.find(x=>x.id==this.selectedUserId)!;
   }
 
-
+  
 }
