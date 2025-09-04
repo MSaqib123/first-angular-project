@@ -55,8 +55,6 @@ export class UserComponent {
   //   name:string;
   // }
   @Input({required:true}) user!:User;
-
-
   @Output() select = new EventEmitter<string>();
 
 
