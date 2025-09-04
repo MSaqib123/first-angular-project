@@ -8,33 +8,30 @@
 
 <main>
   <ul id="users">
-    @for(user of users; track user.id)
+    <!-- @for(user of users; track user.id)
     {
       <li>
           <app-user [user]="user" (select) = "onSelectUser($event)" />
       </li>
-    }
-
-    <!-- <li>
-      <app-user [user]="users[0]" (select) = "onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[1]" (select) = "onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[2]" (select) = "onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[3]" (select) = "onSelectUser($event)" />
-    </li> -->
+    } -->
+      <li *ngFor="let user of users">
+        <app-user [user]="user" (select) = "onSelectUser($event)" />
+      </li>
   </ul>
 
-  
-  @if(onSelectUserObj){
+
+  <!-- =================================== -->
+   <!-- Structrual Director   Older Anguelr -->
+  <!-- =================================== -->
+  <app-task *ngIf="onSelectUserObj else fallback" [NameOfUser]="onSelectUserObj!.name"/>
+  <ng-template #fallback>
+    <p id="fallback">Select a user to see their tasks!</p>
+  </ng-template>
+
+  <!-- @if(onSelectUserObj){
     <app-task [NameOfUser]="onSelectUserObj.name"/>
   }
   @else{
     <p id="fallback">Select a user to see their tasks!</p>
-  }
-  <!-- <app-task [NameOfUser]="onSelectUserObj?.name"/> -->
+  } -->
 </main>
