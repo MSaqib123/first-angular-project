@@ -1,12 +1,13 @@
 import { Component,Input } from '@angular/core';
+import { TaskComponent } from "./task/task.component";
 
 @Component({
-  selector: 'app-task',
-  imports: [],
-  templateUrl: './task.component.html',
-  styleUrl: './task.component.css'
+  selector: 'app-tasks',
+  imports: [TaskComponent],
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css'
 })
-export class TaskComponent {
+export class TasksComponent {
   //================== Type script ===================
   company:string = "";
   select:string = "";

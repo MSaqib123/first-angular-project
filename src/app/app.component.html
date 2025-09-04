@@ -14,24 +14,24 @@
           <app-user [user]="user" (select) = "onSelectUser($event)" />
       </li>
     } -->
-      <li *ngFor="let user of users">
-        <app-user [user]="user" (select) = "onSelectUser($event)" />
-      </li>
+    <li *ngFor="let user of users">
+      <app-user [user]="user" (select) = "onSelectUser($event)" />
+    </li>
   </ul>
 
 
   <!-- =================================== -->
    <!-- Structrual Director   Older Anguelr -->
   <!-- =================================== -->
-  <app-task *ngIf="onSelectUserObj else fallback" [NameOfUser]="onSelectUserObj!.name"/>
+  <!-- <app-tasks *ngIf="onSelectUserObj else fallback" [NameOfUser]="onSelectUserObj!.name"/>
   <ng-template #fallback>
     <p id="fallback">Select a user to see their tasks!</p>
-  </ng-template>
+  </ng-template> -->
 
-  <!-- @if(onSelectUserObj){
-    <app-task [NameOfUser]="onSelectUserObj.name"/>
+  @if(onSelectUserObj){
+    <app-tasks [NameOfUser]="onSelectUserObj.name"/>
   }
   @else{
     <p id="fallback">Select a user to see their tasks!</p>
-  } -->
+  }
 </main>
