@@ -10,6 +10,25 @@ import { input } from '@angular/core';
 import { output } from '@angular/core';
 
 
+// ===================================
+// NOTE Advane Type_Script Type Illisass Way
+// ===================================
+// type User={
+//     id:string,
+//     avatar:string,
+//     name:string;  
+// }
+
+
+// ===================================
+// NOTE Advane Type_Script Type Illisass Way
+// ===================================
+interface User{
+    id:string,
+    avatar:string,
+    name:string;  
+}
+
 
 @Component({
   selector: 'app-user',
@@ -25,11 +44,17 @@ export class UserComponent {
   // @Input({required:true}) avatar! : string;
   // @Input({required:true}) name! : string;
   // @Input({required:true}) id! : string;
-  @Input({required:true}) user!:{
-    id:string,
-    avatar:string,
-    name:string;
-  }
+  
+
+  // ===================================
+  // NOTE Advane Type_Script Type Illisass Way
+  // ===================================
+  // @Input({required:true}) user!:{
+  //   id:string,
+  //   avatar:string,
+  //   name:string;
+  // }
+  @Input({required:true}) user!:User;
 
 
   @Output() select = new EventEmitter<string>();
