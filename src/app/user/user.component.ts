@@ -12,6 +12,7 @@ import { output } from '@angular/core';
 
 //====== Customer Model =========
 import { User } from './User.model';
+import { CardComponent } from "../shared/card/card.component";
 
 
 // ===================================
@@ -36,7 +37,7 @@ import { User } from './User.model';
 
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
