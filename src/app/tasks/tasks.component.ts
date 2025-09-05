@@ -75,5 +75,9 @@ export class TasksComponent {
   showAddTask(){
     this.isAddingTask = true;
   }
+
+  hideTaskUI(){
+    this.isAddingTask = false;
+  }
   
 }
