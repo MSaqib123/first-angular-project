@@ -1,5 +1,11 @@
+import { Injectable } from '@angular/core';
 import { NewTask, Task } from './task.model';
 
+// ===================================
+//  Step 2 add the   Injection  Decorator
+// by adding this decoreator like this now  agnular is awar of  injection in where this service will be used
+@Injectable({ providedIn: 'root' })
+// ===================================
 export class TasksService {
   //we only allow the record in this service
   private tasks = [

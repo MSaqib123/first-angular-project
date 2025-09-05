@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NewTask } from './task.model';
+import { TasksService } from './task.servise';
 
 @Component({
   selector: 'app-tasks',
@@ -14,63 +15,37 @@ export class TasksComponent {
   @Input({ required: true }) userId!: string;
   isAddingTask = false;
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Master issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-    {
-      id: 't4',
-      userId: 'u2',
-      title: 'Prepare Master template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-    {
-      id: 't5',
-      userId: 'u2',
-      title: 'Prepare Master template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-    {
-      id: 't6',
-      userId: 'u4',
-      title: 'Prepare issue Master',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ];
+  //***********************
+  //#region
+  // BAD
+  // this is bad logic to add directly  instance of Service or Class
+  // if in every compooent  we will used this that means  we  are creating  so many instance which is not good
+  // so the data changing will not be relatected here
+  //private tasksService = new TasksService();
+  //#endregion
+
+  //***********************
+
+  //***********************
+  // GOOD
+  // for this we will used the  Dependency injaction
+  // NOTE 1 ====
+  // private tasksService: TasksService;
+  // constructor(tasksService: TasksService) {
+  //   this.tasksService = tasksService;
+  // }
+  // NOTE 2 ====
+  // Step 1
+  constructor(private tasksService: TasksService) {}
+  // Step 2
+  // add the   Injection  Decorator
+  //***********************
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId == this.userId);
+    return this.tasksService.getUserTasks(this.userId);
   }
 
-  onTaskComplete(taskId: string) {
-    this.tasks = this.tasks.filter((t) => t.id !== taskId);
-  }
+  onTaskComplete(taskId: string) {}
 
   showAddTask() {
     this.isAddingTask = true;
@@ -81,13 +56,6 @@ export class TasksComponent {
   }
 
   onFormSubmit(task: NewTask) {
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: task.title,
-      summary: task.summery,
-      dueDate: task.date,
-    });
     this.hideTaskUI();
   }
 }
