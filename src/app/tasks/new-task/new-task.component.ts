@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output,signal } from '@angular/core';
 
 //===================================
 //=========== Directives ============
 // Two Way binging using  FormModule Directives
 //===================================
 /*
-Example for 2 way binding
-  <p>
+  ************************ Example for 2 way binding ************************
+  <p>  
     <label for="title">Title</label>
     <input type="text" id="title" name="title" [(ngModel)] ="inputTitle" />
   </p>
@@ -27,9 +27,15 @@ import { FormsModule } from '@angular/forms';
 export class NewTaskComponent {
   @Output() hideTaskUI =new EventEmitter<void>();
   
-  inputTitle = '';
-  inputSummery = '';
-  inputDate = '';
+  //==== Without Signals ========
+  // inputTitle = '';
+  // inputSummery = '';
+  // inputDate = '';
+
+  //==== With Signals ========
+  inputTitle = signal('');
+  inputSummery = signal('');
+  inputDate = signal('');
 
   hideTask(){
     this.hideTaskUI.emit();
