@@ -7,6 +7,16 @@ import { NewTask, Task } from './task.model';
 @Injectable({ providedIn: 'root' })
 // ===================================
 export class TasksService {
+  /**
+   *
+   */
+  constructor() {
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+      this.tasks = JSON.parse(tasks);
+    }
+  }
+
   //we only allow the record in this service
   private tasks = [
     {
@@ -70,9 +80,16 @@ export class TasksService {
       summary: task.summery,
       dueDate: task.date,
     });
+
+    this.saveTaskToLocal();
   }
 
   deleteTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.saveTaskToLocal();
+  }
+
+  private saveTaskToLocal() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 }
