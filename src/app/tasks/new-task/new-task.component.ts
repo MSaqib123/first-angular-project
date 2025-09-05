@@ -51,6 +51,7 @@ export class NewTaskComponent {
   // inputTitle = signal('');
   // inputSummery = signal('');
   // inputDate = signal('');
+  // sorry
 
   hideTask() {
     this.hideTaskUI.emit();
