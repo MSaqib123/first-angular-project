@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from "./new-task/new-task.component";
+import { NewTask } from './task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -9,8 +10,8 @@ import { NewTaskComponent } from "./new-task/new-task.component";
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  @Input() NameOfUser?: string;
-  @Input() id?:string;
+  @Input({required:true}) NameOfUser?: string;
+  @Input({required:true}) userId!:string;
   isAddingTask = false;
 
   tasks = [
@@ -64,7 +65,7 @@ export class TasksComponent {
   ];
 
   get selectedUserTasks(){
-    return  this.tasks.filter((task)=>task.userId == this.id);
+    return  this.tasks.filter((task)=>task.userId == this.userId);
   }
 
   onTaskComplete(taskId:string){
@@ -78,6 +79,17 @@ export class TasksComponent {
 
   hideTaskUI(){
     this.isAddingTask = false;
+  }
+
+  onFormSubmit(task:NewTask){
+    this.tasks.unshift({
+      id:new Date().getTime().toString(),
+      userId:this.userId,
+      title:task.title,
+      summary:task.summery,
+      dueDate:task.date
+    })
+    this.hideTaskUI();
   }
   
 }

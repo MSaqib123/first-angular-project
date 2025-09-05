@@ -1,5 +1,5 @@
 @if(isAddingTask){
-    <app-new-task (hideTaskUI)="hideTaskUI()"/>
+    <app-new-task (hideTaskUI)="hideTaskUI()" (add) = "onFormSubmit($event)"/>
 }
 <section id="tasks">
     <header>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output,signal } from '@angular/core';
+import { NewTask } from '../task.model';
 
 //===================================
 //=========== Directives ============
@@ -15,7 +16,6 @@ import { Component, EventEmitter, Output,signal } from '@angular/core';
     <input type="text" id="title" name="title" [(ngModel)] ="inputTitle" />
   </p>
 */
-
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -26,18 +26,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTaskComponent {
   @Output() hideTaskUI =new EventEmitter<void>();
+  @Output() add =new EventEmitter<NewTask>();
   
   //==== Without Signals ========
-  // inputTitle = '';
-  // inputSummery = '';
-  // inputDate = '';
+  inputTitle = '';
+  inputSummery = '';
+  inputDate = '';
 
   //==== With Signals ========
-  inputTitle = signal('');
-  inputSummery = signal('');
-  inputDate = signal('');
+  // inputTitle = signal('');
+  // inputSummery = signal('');
+  // inputDate = signal('');
 
   hideTask(){
     this.hideTaskUI.emit();
+  }
+
+  onSubmit(){
+    this.add.emit({
+      title:this.inputTitle,
+      summery:this.inputSummery,
+      date:this.inputDate
+    });
   }
 }
