@@ -1,20 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { TaskComponent } from './task/task.component';
-import { NewTaskComponent } from './new-task/new-task.component';
-import { NewTask } from './task.model';
+import { NewTask, Task } from './task.model';
 
-@Component({
-  selector: 'app-tasks',
-  imports: [TaskComponent, NewTaskComponent],
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css',
-})
-export class TasksComponent {
-  @Input({ required: true }) NameOfUser?: string;
-  @Input({ required: true }) userId!: string;
-  isAddingTask = false;
-
-  tasks = [
+export class TasksService {
+  //we only allow the record in this service
+  private tasks = [
     {
       id: 't1',
       userId: 'u1',
@@ -64,30 +52,21 @@ export class TasksComponent {
     },
   ];
 
-  get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId == this.userId);
+  getUserTasks(userId: string) {
+    return this.tasks.filter((task) => task.userId == userId);
   }
 
-  onTaskComplete(taskId: string) {
-    this.tasks = this.tasks.filter((t) => t.id !== taskId);
-  }
-
-  showAddTask() {
-    this.isAddingTask = true;
-  }
-
-  hideTaskUI() {
-    this.isAddingTask = false;
-  }
-
-  onFormSubmit(task: NewTask) {
+  insertTask(task: NewTask, userId: string) {
     this.tasks.unshift({
       id: new Date().getTime().toString(),
-      userId: this.userId,
+      userId: userId,
       title: task.title,
       summary: task.summery,
       dueDate: task.date,
     });
-    this.hideTaskUI();
+  }
+
+  deleteTask(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }
