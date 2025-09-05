@@ -54,8 +54,4 @@ export class TasksComponent {
   hideTaskUI() {
     this.isAddingTask = false;
   }
-
-  onFormSubmit(task: NewTask) {
-    this.hideTaskUI();
-  }
 }

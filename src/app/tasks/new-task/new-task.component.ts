@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Output,signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  Input,
+  signal,
+} from '@angular/core';
 import { NewTask } from '../task.model';
 
 //===================================
@@ -16,18 +23,25 @@ import { NewTask } from '../task.model';
     <input type="text" id="title" name="title" [(ngModel)] ="inputTitle" />
   </p>
 */
-import { FormsModule } from '@angular/forms';
+import { FormsModule, RequiredValidator } from '@angular/forms';
+import { TasksService } from '../task.servise';
 
 @Component({
   selector: 'app-new-task',
   imports: [FormsModule],
   templateUrl: './new-task.component.html',
-  styleUrl: './new-task.component.css'
+  styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
-  @Output() hideTaskUI =new EventEmitter<void>();
-  @Output() add =new EventEmitter<NewTask>();
-  
+  //===================================
+  // =====  Injection
+  //===================================
+  // constructor(private tasksService: TasksService) {}
+  private tasksService = inject(TasksService);
+
+  @Input({ required: true }) userId!: string;
+  @Output() hideTaskUI = new EventEmitter<void>();
+
   //==== Without Signals ========
   inputTitle = '';
   inputSummery = '';
@@ -38,15 +52,19 @@ export class NewTaskComponent {
   // inputSummery = signal('');
   // inputDate = signal('');
 
-  hideTask(){
+  hideTask() {
     this.hideTaskUI.emit();
   }
 
-  onSubmit(){
-    this.add.emit({
-      title:this.inputTitle,
-      summery:this.inputSummery,
-      date:this.inputDate
-    });
+  onSubmit() {
+    this.tasksService.insertTask(
+      {
+        title: this.inputTitle,
+        summery: this.inputSummery,
+        date: this.inputDate,
+      },
+      this.userId
+    );
+    this.hideTaskUI.emit();
   }
 }
